@@ -1,0 +1,22 @@
+services:
+  api-dev:
+    build:
+      context: .
+      target: development
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./src:/app/src
+      - ./pyproject.toml:/app/pyproject.toml
+    environment:
+      - FASTAPI_ENV=development
+    tty: true
+
+  api-prod:
+    build:
+      context: .
+      target: production
+    ports:
+      - "8001:8000"
+    environment:
+      - FASTAPI_ENV=production
